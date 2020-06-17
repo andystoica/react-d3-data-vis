@@ -2,7 +2,7 @@
 
 ## Installation
 
-Clone the repository, install dependencies and built the project. Once completed, run the provided http server and point your browser to [http://localhost:3000](http://localhost:5000)
+Clone the repository, install dependencies and built the project. Once completed, run the provided http server and point your browser to [http://localhost:5000](http://localhost:5000)
 
 ```
 git clone https://github.com/andystoica/react-d3-data-vis && \
@@ -36,4 +36,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `npm run http`
 
-Starts a local http server on port 5000. The application is available on local host at [http://localhost:3000](http://localhost:5000)
+Starts a local http server on port 5000. The application is available on local host at [http://localhost:5000](http://localhost:5000)
