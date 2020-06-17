@@ -1,23 +1,22 @@
 import React from 'react';
 
 const Table = ({ data, toggleMetric }) => {
-  
   const renderLines = data.map((line) => {
     return (
       <tr key={line.key}>
         <td>
           <div className="ui checkbox">
-            <input    
+            <input
               type="checkbox"
               name="public"
               checked={line.active}
-              onChange={() => toggleMetric(line.key)} />
+              onChange={() => toggleMetric(line.key)}
+            />
             <label>{line.key}</label>
           </div>
         </td>
-        <td
-          className="center aligned"
-          style={{color: line.color}}>{line.last.toFixed(1)}
+        <td className="center aligned" style={{ color: line.color }}>
+          {line.last.toFixed(1)}
         </td>
       </tr>
     );
