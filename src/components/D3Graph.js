@@ -1,5 +1,4 @@
-import * as d3 from 'd3';
-import { curveBasis } from 'd3';
+import { axisBottom, axisLeft, curveBasis, line, max, scaleLinear, select } from 'd3';
 import './D3Graph.css';
 
 const MARGIN = { TOP: 10, BOTTOM: 60, LEFT: 50, RIGHT: 10 };
@@ -14,7 +13,7 @@ class D3Graph {
     vis.data = data;
         
     // SVG Canvas
-		vis.g = d3.select(element)
+		vis.g = select(element)
     .append("svg")
       .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
       .attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
@@ -46,7 +45,7 @@ class D3Graph {
     // Line Generator
     const xVal = d => d.time;
     const yVal = d => d.value;
-    vis.lineGenerator = d3.line()
+    vis.lineGenerator = line()
       .x(d => vis.xScale(xVal(d)))
       .y(d => vis.yScale(yVal(d)))
       .curve(curveBasis);
@@ -61,19 +60,19 @@ class D3Graph {
     vis.data = data;
     
     // Scales    
-    vis.xScale = d3.scaleLinear()
+    vis.xScale = scaleLinear()
       .domain([0, 55])
       .range([0, WIDTH])
       .nice();
-    vis.yScale = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d.max)])
+    vis.yScale = scaleLinear()
+      .domain([0, max(data, d => d.max)])
       .range([HEIGHT, 0])
       .nice();
     
     // Axis
-    const xAxisCall = d3.axisBottom(vis.xScale);
+    const xAxisCall = axisBottom(vis.xScale);
     vis.xAxisGroup.transition(1000).call(xAxisCall);
-    const yAxisCall = d3.axisLeft(vis.yScale);
+    const yAxisCall = axisLeft(vis.yScale);
     vis.yAxisGroup.transition(1000).call(yAxisCall);
     
     // Join
